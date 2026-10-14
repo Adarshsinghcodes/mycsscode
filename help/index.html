@@ -1,0 +1,5024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="HelpMitr - Your smart city companion for restaurants, hotels and emergency information."
+    >
+
+    <title>HelpMitr | Your City Companion</title>
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family:
+                Inter,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background: #f6f8fc;
+
+            color: #18202a;
+
+            line-height: 1.6;
+
+            transition:
+                background 0.3s ease,
+                color 0.3s ease;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+
+        button {
+            cursor: pointer;
+        }
+
+
+        .container {
+            width: min(1180px, 92%);
+            margin: auto;
+        }
+
+
+        /* =====================================================
+           VARIABLES
+        ===================================================== */
+
+        :root {
+
+            --primary: #5b5cf0;
+
+            --primary-dark: #4445d6;
+
+            --secondary: #00b894;
+
+            --accent: #ff7a59;
+
+            --danger: #ef4444;
+
+            --warning: #f59e0b;
+
+            --dark: #151936;
+
+            --text: #18202a;
+
+            --muted: #6b7280;
+
+            --white: #ffffff;
+
+            --bg: #f6f8fc;
+
+            --card: #ffffff;
+
+            --border: #e7eaf0;
+
+            --shadow:
+                0 12px 35px rgba(
+                    25,
+                    35,
+                    80,
+                    0.08
+                );
+
+            --radius: 22px;
+        }
+
+
+        /* =====================================================
+           DARK MODE
+        ===================================================== */
+
+        body.dark {
+
+            --text: #f5f7fb;
+
+            --muted: #aab1c0;
+
+            --white: #1b203d;
+
+            --bg: #0f1224;
+
+            --card: #191d35;
+
+            --border: #2d3354;
+
+            --shadow:
+                0 12px 35px rgba(
+                    0,
+                    0,
+                    0,
+                    0.25
+                );
+        }
+
+
+        body.dark .navbar,
+        body.dark .search-box,
+        body.dark .city-card,
+        body.dark .category-card,
+        body.dark .restaurant-card,
+        body.dark .hotel-card,
+        body.dark .stats-box,
+        body.dark .emergency-card,
+        body.dark .city-search-result {
+            background: var(--card);
+        }
+
+
+        body.dark .hero {
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #262d67 0%,
+                    #131633 48%,
+                    #0f1224 100%
+                );
+        }
+
+
+        body.dark .navbar {
+            box-shadow:
+                0 5px 25px rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 9999;
+
+            height: 76px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.88
+                );
+
+            backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid var(--border);
+
+            transition: 0.3s ease;
+        }
+
+
+        .nav-inner {
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 25px;
+
+            font-weight: 900;
+
+            letter-spacing: -1px;
+        }
+
+
+        .logo-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 13px;
+
+            display: grid;
+
+            place-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #5b5cf0,
+                    #8b5cf6
+                );
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px
+                rgba(
+                    91,
+                    92,
+                    240,
+                    0.28
+                );
+        }
+
+
+        .logo span {
+            color: var(--primary);
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 30px;
+
+            align-items: center;
+        }
+
+
+        .nav-links a {
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            color: var(--muted);
+
+            transition: 0.25s ease;
+        }
+
+
+        .nav-links a:hover {
+
+            color: var(--primary);
+
+            transform: translateY(-1px);
+        }
+
+
+        .nav-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .icon-btn {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 50%;
+
+            border: 1px solid var(--border);
+
+            background: var(--card);
+
+            color: var(--text);
+
+            transition: 0.25s ease;
+        }
+
+
+        .icon-btn:hover {
+
+            transform: rotate(8deg);
+
+            border-color: var(--primary);
+        }
+
+
+        .mobile-menu {
+
+            display: none;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+
+            min-height: 650px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    #d9ddff 0%,
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 90% 15%,
+                    #ffe0d6 0%,
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f4f5ff 0%,
+                    #ffffff 50%,
+                    #fff8f5 100%
+                );
+        }
+
+
+        .hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 450px;
+
+            height: 450px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    91,
+                    92,
+                    240,
+                    0.07
+                );
+
+            right: -130px;
+
+            top: -100px;
+
+            filter: blur(2px);
+        }
+
+
+        .hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+
+            height: 300px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    0,
+                    184,
+                    148,
+                    0.07
+                );
+
+            left: -100px;
+
+            bottom: -100px;
+        }
+
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 850px;
+
+            padding: 80px 0;
+        }
+
+
+        .hero-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 9px 15px;
+
+            background:
+                rgba(
+                    91,
+                    92,
+                    240,
+                    0.1
+                );
+
+            border:
+                1px solid
+                rgba(
+                    91,
+                    92,
+                    240,
+                    0.18
+                );
+
+            color: var(--primary);
+
+            border-radius: 50px;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            margin-bottom: 22px;
+        }
+
+
+        .hero h1 {
+
+            font-size:
+                clamp(
+                    44px,
+                    7vw,
+                    76px
+                );
+
+            line-height: 1.04;
+
+            letter-spacing: -3px;
+
+            max-width: 850px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .hero h1 .gradient-text {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #5b5cf0,
+                    #8b5cf6,
+                    #ff7a59
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            background-clip: text;
+        }
+
+
+        .hero-description {
+
+            max-width: 680px;
+
+            color: var(--muted);
+
+            font-size: 18px;
+
+            margin-bottom: 34px;
+        }
+
+
+        /* =====================================================
+           SEARCH
+        ===================================================== */
+
+        .search-wrapper {
+
+            width: min(760px, 100%);
+
+            position: relative;
+        }
+
+
+        .search-box {
+
+            min-height: 70px;
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 8px;
+
+            border-radius: 20px;
+
+            background: white;
+
+            box-shadow:
+                0 20px 50px
+                rgba(
+                    57,
+                    65,
+                    120,
+                    0.16
+                );
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.6
+                );
+        }
+
+
+        .search-icon {
+
+            width: 52px;
+
+            text-align: center;
+
+            font-size: 22px;
+
+            color: var(--muted);
+        }
+
+
+        .search-box input {
+
+            flex: 1;
+
+            height: 52px;
+
+            border: none;
+
+            outline: none;
+
+            background: transparent;
+
+            color: var(--text);
+
+            font-size: 16px;
+
+            padding: 0 8px;
+        }
+
+
+        .search-box button {
+
+            border: none;
+
+            min-width: 120px;
+
+            height: 52px;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #5b5cf0,
+                    #7367f0
+                );
+
+            color: white;
+
+            font-weight: 800;
+
+            transition: 0.25s ease;
+
+            box-shadow:
+                0 8px 20px
+                rgba(
+                    91,
+                    92,
+                    240,
+                    0.25
+                );
+        }
+
+
+        .search-box button:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(
+                    91,
+                    92,
+                    240,
+                    0.32
+                );
+        }
+
+
+        .city-search-result {
+
+            display: none;
+
+            position: absolute;
+
+            width: 100%;
+
+            top: 78px;
+
+            left: 0;
+
+            background: white;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 18px;
+
+            box-shadow: var(--shadow);
+
+            overflow: hidden;
+
+            z-index: 20;
+        }
+
+
+        .search-result-item {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 15px 18px;
+
+            border-bottom:
+                1px solid var(--border);
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+
+        .search-result-item:hover {
+            background: #f1f3ff;
+        }
+
+
+        body.dark
+        .search-result-item:hover {
+            background: #222747;
+        }
+
+
+        .result-city {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .result-icon {
+
+            width: 40px;
+
+            height: 40px;
+
+            display: grid;
+
+            place-items: center;
+
+            background: #eef0ff;
+
+            border-radius: 12px;
+        }
+
+
+        body.dark .result-icon {
+            background: #292e55;
+        }
+
+
+        .result-city strong {
+            display: block;
+        }
+
+
+        .result-city small {
+            color: var(--muted);
+        }
+
+
+        /* =====================================================
+           HERO QUICK LINKS
+        ===================================================== */
+
+        .quick-links {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 25px;
+        }
+
+
+        .quick-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 9px 14px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.7
+                );
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 50px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: var(--text);
+
+            transition: 0.25s ease;
+        }
+
+
+        .quick-link:hover {
+
+            transform: translateY(-2px);
+
+            border-color:
+                var(--primary);
+
+            color: var(--primary);
+        }
+
+
+        /* =====================================================
+           STATS
+        ===================================================== */
+
+        .stats-section {
+
+            margin-top: -55px;
+
+            position: relative;
+
+            z-index: 5;
+        }
+
+
+        .stats-box {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            background: var(--card);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 24px;
+
+            box-shadow: var(--shadow);
+
+            overflow: hidden;
+        }
+
+
+        .stat {
+
+            padding: 30px;
+
+            text-align: center;
+
+            border-right:
+                1px solid var(--border);
+        }
+
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+
+        .stat-number {
+
+            font-size: 31px;
+
+            font-weight: 900;
+
+            color: var(--primary);
+
+            margin-bottom: 4px;
+        }
+
+
+        .stat-text {
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           SECTION COMMON
+        ===================================================== */
+
+        .section {
+
+            padding: 95px 0;
+        }
+
+
+        .section.soft {
+            background: #f0f3f9;
+        }
+
+
+        body.dark .section.soft {
+            background: #12162a;
+        }
+
+
+        .section-header {
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            margin-bottom: 40px;
+        }
+
+
+        .section-kicker {
+
+            color: var(--primary);
+
+            font-size: 13px;
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .section-title {
+
+            font-size:
+                clamp(
+                    30px,
+                    4vw,
+                    46px
+                );
+
+            letter-spacing: -1.5px;
+
+            line-height: 1.1;
+
+            margin-bottom: 10px;
+        }
+
+
+        .section-description {
+
+            color: var(--muted);
+
+            max-width: 680px;
+        }
+
+
+        .view-all-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: var(--primary);
+
+            font-weight: 800;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           CITY CARDS
+        ===================================================== */
+
+        .city-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .city-card {
+
+            position: relative;
+
+            min-height: 230px;
+
+            overflow: hidden;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #5b5cf0,
+                    #393ab5
+                );
+
+            color: white;
+
+            padding: 25px;
+
+            cursor: pointer;
+
+            box-shadow: var(--shadow);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+
+        .city-card:hover {
+
+            transform:
+                translateY(-8px);
+
+            box-shadow:
+                0 25px 50px
+                rgba(
+                    40,
+                    45,
+                    110,
+                    0.22
+                );
+        }
+
+
+        .city-card:nth-child(2) {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ff7a59,
+                    #e84f2c
+                );
+        }
+
+
+        .city-card:nth-child(3) {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #00b894,
+                    #008c72
+                );
+        }
+
+
+        .city-card:nth-child(4) {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #8b5cf6,
+                    #6138c7
+                );
+        }
+
+
+        .city-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+
+            height: 150px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.12
+                );
+
+            right: -35px;
+
+            bottom: -45px;
+        }
+
+
+        .city-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .city-icon {
+
+            width: 50px;
+
+            height: 50px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.18
+                );
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 15px;
+
+            font-size: 23px;
+        }
+
+
+        .city-arrow {
+
+            font-size: 22px;
+
+            opacity: 0.8;
+        }
+
+
+        .city-card h3 {
+
+            position: relative;
+
+            z-index: 2;
+
+            margin-top: 65px;
+
+            font-size: 27px;
+        }
+
+
+        .city-card p {
+
+            position: relative;
+
+            z-index: 2;
+
+            opacity: 0.85;
+
+            font-size: 13px;
+
+            max-width: 180px;
+        }
+
+
+        /* =====================================================
+           CATEGORY CARDS
+        ===================================================== */
+
+        .category-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+
+        .category-card {
+
+            background: var(--card);
+
+            border:
+                1px solid var(--border);
+
+            padding: 30px;
+
+            border-radius: 22px;
+
+            box-shadow: var(--shadow);
+
+            transition: 0.3s ease;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .category-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            border-color:
+                rgba(
+                    91,
+                    92,
+                    240,
+                    0.25
+                );
+        }
+
+
+        .category-icon {
+
+            width: 58px;
+
+            height: 58px;
+
+            border-radius: 17px;
+
+            display: grid;
+
+            place-items: center;
+
+            font-size: 28px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .category-card:nth-child(1)
+        .category-icon {
+
+            background: #fff0ed;
+        }
+
+
+        .category-card:nth-child(2)
+        .category-icon {
+
+            background: #eafaf5;
+        }
+
+
+        .category-card:nth-child(3)
+        .category-icon {
+
+            background: #f1edff;
+        }
+
+
+        body.dark
+        .category-card:nth-child(1)
+        .category-icon {
+            background: #3a2522;
+        }
+
+
+        body.dark
+        .category-card:nth-child(2)
+        .category-icon {
+            background: #19372f;
+        }
+
+
+        body.dark
+        .category-card:nth-child(3)
+        .category-icon {
+            background: #2e2750;
+        }
+
+
+        .category-card h3 {
+
+            font-size: 22px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .category-card p {
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .category-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            color: var(--primary);
+
+            font-size: 14px;
+
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           CITY PANEL
+        ===================================================== */
+
+        .city-panel {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #151936,
+                    #242a61
+                );
+
+            color: white;
+
+            border-radius: 30px;
+
+            padding: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+
+        .city-panel::after {
+
+            content: "";
+
+            width: 300px;
+
+            height: 300px;
+
+            border-radius: 50%;
+
+            position: absolute;
+
+            right: -120px;
+
+            top: -100px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.08
+                );
+        }
+
+
+        .city-panel-info {
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .selected-label {
+
+            display: inline-block;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+
+            opacity: 0.7;
+
+            margin-bottom: 8px;
+        }
+
+
+        .selected-city-name {
+
+            font-size:
+                clamp(
+                    35px,
+                    5vw,
+                    55px
+                );
+
+            line-height: 1;
+
+            margin-bottom: 12px;
+        }
+
+
+        .selected-city-text {
+
+            opacity: 0.75;
+
+            max-width: 560px;
+        }
+
+
+        .city-panel-buttons {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            position: relative;
+
+            z-index: 3;
+        }
+
+
+        .panel-btn {
+
+            border: none;
+
+            padding: 12px 17px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.12
+                );
+
+            color: white;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.12
+                );
+
+            font-weight: 700;
+
+            transition: 0.25s ease;
+        }
+
+
+        .panel-btn:hover {
+
+            background: white;
+
+            color: #151936;
+        }
+
+
+        /* =====================================================
+           EMERGENCY
+        ===================================================== */
+
+        .emergency-section {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff3f1,
+                    #fffafa
+                );
+        }
+
+
+        body.dark .emergency-section {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #261b22,
+                    #18131b
+                );
+        }
+
+
+        .emergency-banner {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ef4444,
+                    #dc2626
+                );
+
+            color: white;
+
+            border-radius: 20px;
+
+            padding: 22px;
+
+            margin-bottom: 30px;
+
+            box-shadow:
+                0 12px 30px
+                rgba(
+                    239,
+                    68,
+                    68,
+                    0.2
+                );
+        }
+
+
+        .emergency-banner-icon {
+
+            font-size: 35px;
+        }
+
+
+        .emergency-banner strong {
+
+            display: block;
+
+            font-size: 18px;
+        }
+
+
+        .emergency-banner p {
+
+            opacity: 0.88;
+
+            font-size: 13px;
+        }
+
+
+        .emergency-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .emergency-card {
+
+            background: var(--card);
+
+            border:
+                1px solid var(--border);
+
+            padding: 25px;
+
+            border-radius: 22px;
+
+            box-shadow: var(--shadow);
+
+            text-align: center;
+
+            transition: 0.25s ease;
+        }
+
+
+        .emergency-card:hover {
+
+            transform:
+                translateY(-5px);
+        }
+
+
+        .emergency-icon {
+
+            width: 60px;
+
+            height: 60px;
+
+            margin: auto auto 18px;
+
+            border-radius: 18px;
+
+            display: grid;
+
+            place-items: center;
+
+            font-size: 28px;
+
+            background: #fff0f0;
+        }
+
+
+        body.dark
+        .emergency-icon {
+            background: #3a2025;
+        }
+
+
+        .emergency-card h3 {
+
+            margin-bottom: 7px;
+
+            font-size: 19px;
+        }
+
+
+        .emergency-card p {
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .call-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            color: white;
+
+            background: #ef4444;
+
+            font-weight: 800;
+
+            transition: 0.25s ease;
+        }
+
+
+        .call-btn:hover {
+
+            background: #dc2626;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =====================================================
+           FILTERS
+        ===================================================== */
+
+        .filter-bar {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-bottom: 28px;
+        }
+
+
+        .filter-btn {
+
+            border:
+                1px solid var(--border);
+
+            background: var(--card);
+
+            color: var(--muted);
+
+            padding: 10px 17px;
+
+            border-radius: 50px;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            transition: 0.25s ease;
+        }
+
+
+        .filter-btn:hover,
+        .filter-btn.active {
+
+            background: var(--primary);
+
+            color: white;
+
+            border-color:
+                var(--primary);
+        }
+
+
+        /* =====================================================
+           RESTAURANTS
+        ===================================================== */
+
+        .listing-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 23px;
+        }
+
+
+        .restaurant-card,
+        .hotel-card {
+
+            background: var(--card);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            box-shadow: var(--shadow);
+
+            transition: 0.3s ease;
+        }
+
+
+        .restaurant-card:hover,
+        .hotel-card:hover {
+
+            transform:
+                translateY(-6px);
+        }
+
+
+        .listing-visual {
+
+            height: 185px;
+
+            position: relative;
+
+            display: grid;
+
+            place-items: center;
+
+            font-size: 64px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e9ecff,
+                    #f9efff
+                );
+        }
+
+
+        .restaurant-card:nth-child(2)
+        .listing-visual {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff0e7,
+                    #fff8ee
+                );
+        }
+
+
+        .restaurant-card:nth-child(3)
+        .listing-visual {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e6faf3,
+                    #eefdf8
+                );
+        }
+
+
+        .listing-badge {
+
+            position: absolute;
+
+            left: 15px;
+
+            top: 15px;
+
+            padding: 7px 10px;
+
+            border-radius: 50px;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.92
+                );
+
+            color: var(--text);
+        }
+
+
+        .rating-badge {
+
+            position: absolute;
+
+            right: 15px;
+
+            top: 15px;
+
+            padding: 7px 10px;
+
+            border-radius: 50px;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.92
+                );
+
+            color: #8a5a00;
+        }
+
+
+        .listing-info {
+
+            padding: 22px;
+        }
+
+
+        .listing-info h3 {
+
+            font-size: 21px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .listing-info p {
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .listing-meta {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-top: 18px;
+        }
+
+
+        .price {
+
+            font-weight: 900;
+
+            color: var(--text);
+        }
+
+
+        .small-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 10px 13px;
+
+            border-radius: 11px;
+
+            color: white;
+
+            background: var(--primary);
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            transition: 0.25s ease;
+
+            border: none;
+        }
+
+
+        .small-btn:hover {
+
+            background:
+                var(--primary-dark);
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        .empty-message {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 30px;
+
+            color: var(--muted);
+        }
+
+
+        /* =====================================================
+           HOTEL SECTION
+        ===================================================== */
+
+        .hotel-visual {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f1eaff,
+                    #eef4ff
+                );
+        }
+
+
+        .hotel-card:nth-child(2)
+        .hotel-visual {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff0e6,
+                    #fff8ec
+                );
+        }
+
+
+        .hotel-card:nth-child(3)
+        .hotel-visual {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e7faf4,
+                    #effdf9
+                );
+        }
+
+
+        /* =====================================================
+           CTA
+        ===================================================== */
+
+        .cta {
+
+            padding: 90px 0;
+        }
+
+
+        .cta-box {
+
+            border-radius: 30px;
+
+            padding: 55px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #5b5cf0,
+                    #7b55e9,
+                    #ff795c
+                );
+
+            color: white;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 30px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .cta-box::after {
+
+            content: "";
+
+            width: 360px;
+
+            height: 360px;
+
+            position: absolute;
+
+            right: -150px;
+
+            top: -160px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.12
+                );
+        }
+
+
+        .cta-content {
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .cta h2 {
+
+            font-size:
+                clamp(
+                    30px,
+                    4vw,
+                    46px
+                );
+
+            line-height: 1.1;
+
+            margin-bottom: 12px;
+        }
+
+
+        .cta p {
+
+            opacity: 0.87;
+
+            max-width: 600px;
+        }
+
+
+        .cta-btn {
+
+            position: relative;
+
+            z-index: 2;
+
+            background: white;
+
+            color: #4c4bdc;
+
+            padding: 15px 22px;
+
+            border-radius: 14px;
+
+            font-weight: 900;
+
+            white-space: nowrap;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            background: #11152d;
+
+            color: white;
+
+            padding: 60px 0 25px;
+        }
+
+
+        .footer-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1.3fr
+                1fr
+                1fr
+                1fr;
+
+            gap: 40px;
+
+            margin-bottom: 45px;
+        }
+
+
+        .footer-logo {
+
+            font-size: 26px;
+
+            font-weight: 900;
+
+            margin-bottom: 12px;
+        }
+
+
+        .footer-description {
+
+            color: #9da4b8;
+
+            max-width: 330px;
+
+            font-size: 14px;
+        }
+
+
+        .footer-column h4 {
+
+            font-size: 14px;
+
+            margin-bottom: 17px;
+        }
+
+
+        .footer-column a {
+
+            display: block;
+
+            color: #9da4b8;
+
+            margin-bottom: 10px;
+
+            font-size: 13px;
+
+            transition: 0.2s ease;
+        }
+
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+
+        .footer-bottom {
+
+            border-top:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.1
+                );
+
+            padding-top: 22px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #7f879c;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           TOAST
+        ===================================================== */
+
+        .toast {
+
+            position: fixed;
+
+            right: 22px;
+
+            bottom: 22px;
+
+            background: #181d36;
+
+            color: white;
+
+            padding: 14px 18px;
+
+            border-radius: 13px;
+
+            box-shadow:
+                0 15px 35px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.2
+                );
+
+            transform:
+                translateY(120px);
+
+            opacity: 0;
+
+            transition: 0.3s ease;
+
+            z-index: 99999;
+
+            font-size: 13px;
+
+            max-width: 320px;
+        }
+
+
+        .toast.show {
+
+            transform:
+                translateY(0);
+
+            opacity: 1;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .city-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .stats-box {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .stat:nth-child(2) {
+                border-right: none;
+            }
+
+
+            .stat:nth-child(-n+2) {
+                border-bottom:
+                    1px solid var(--border);
+            }
+
+
+            .emergency-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .listing-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .footer-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 760px) {
+
+            .navbar {
+                height: 68px;
+            }
+
+
+            .nav-links {
+                display: none;
+            }
+
+
+            .mobile-menu {
+                display: block;
+            }
+
+
+            .hero {
+                min-height: 620px;
+            }
+
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+
+            .search-box {
+                padding: 7px;
+
+                flex-wrap: wrap;
+            }
+
+
+            .search-icon {
+                width: 42px;
+            }
+
+
+            .search-box input {
+                width:
+                    calc(
+                        100% - 42px
+                    );
+            }
+
+
+            .search-box button {
+
+                width: 100%;
+
+                margin-top: 6px;
+            }
+
+
+            .city-search-result {
+
+                top: 125px;
+            }
+
+
+            .section {
+                padding: 70px 0;
+            }
+
+
+            .section-header {
+
+                flex-direction:
+                    column;
+
+                align-items: flex-start;
+            }
+
+
+            .city-panel {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+                padding: 32px 25px;
+            }
+
+
+            .category-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .cta-box {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+                padding: 40px 28px;
+            }
+
+
+            .footer-bottom {
+
+                flex-direction:
+                    column;
+
+                gap: 10px;
+            }
+        }
+
+
+        @media (max-width: 570px) {
+
+            .container {
+                width: 91%;
+            }
+
+
+            .stats-box {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .stat {
+
+                padding: 22px 12px;
+            }
+
+
+            .stat-number {
+                font-size: 25px;
+            }
+
+
+            .city-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .emergency-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .listing-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .footer-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .hero-badge {
+                font-size: 11px;
+            }
+
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+
+            .city-panel-buttons {
+                width: 100%;
+            }
+
+
+            .panel-btn {
+                flex: 1;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+        <div class="container nav-inner">
+
+
+            <a
+                href="#home"
+                class="logo"
+            >
+
+                <div class="logo-icon">
+                    🤝
+                </div>
+
+                <div>
+                    Help<span>Mitr</span>
+                </div>
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#cities">
+                    Cities
+                </a>
+
+                <a href="#emergency">
+                    Emergency
+                </a>
+
+                <a href="#restaurants">
+                    Restaurants
+                </a>
+
+                <a href="#hotels">
+                    Hotels
+                </a>
+
+            </nav>
+
+
+            <div class="nav-actions">
+
+                <button
+                    class="icon-btn"
+                    id="themeBtn"
+                    onclick="toggleTheme()"
+                    title="Toggle dark mode"
+                >
+                    🌙
+                </button>
+
+
+                <button
+                    class="icon-btn mobile-menu"
+                    onclick="scrollToSection('categories')"
+                >
+                    ☰
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <main id="home">
+
+        <section class="hero">
+
+            <div class="container">
+
+                <div class="hero-content">
+
+
+                    <div class="hero-badge">
+
+                        ✨ Smart City Companion
+
+                    </div>
+
+
+                    <h1>
+
+                        New city?
+
+                        <br>
+
+                        <span class="gradient-text">
+                            HelpMitr is here.
+                        </span>
+
+                    </h1>
+
+
+                    <p class="hero-description">
+
+                        Find useful city information in one place —
+                        restaurants, hotels and important emergency
+                        contacts. Search your city and explore.
+
+                    </p>
+
+
+                    <!-- SEARCH -->
+
+                    <div class="search-wrapper">
+
+                        <div class="search-box">
+
+                            <div class="search-icon">
+                                🔍
+                            </div>
+
+
+                            <input
+                                type="text"
+                                id="cityInput"
+                                placeholder="Search city... e.g. Gaya"
+                                autocomplete="off"
+                                oninput="searchCity()"
+                                onkeydown="handleSearchKey(event)"
+                            >
+
+
+                            <button
+                                onclick="searchCity(true)"
+                            >
+                                Search
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="citySearchResult"
+                            class="city-search-result"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- QUICK LINKS -->
+
+                    <div class="quick-links">
+
+                        <a
+                            href="#emergency"
+                            class="quick-link"
+                        >
+                            🚨 Emergency
+                        </a>
+
+                        <a
+                            href="#restaurants"
+                            class="quick-link"
+                        >
+                            🍽️ Food
+                        </a>
+
+                        <a
+                            href="#hotels"
+                            class="quick-link"
+                        >
+                            🏨 Stay
+                        </a>
+
+                        <a
+                            href="#cities"
+                            class="quick-link"
+                        >
+                            📍 Explore Cities
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             STATS
+        ====================================================== -->
+
+        <section class="stats-section">
+
+            <div class="container">
+
+                <div class="stats-box">
+
+                    <div class="stat">
+
+                        <div class="stat-number">
+                            10+
+                        </div>
+
+                        <div class="stat-text">
+                            Cities Ready
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <div class="stat-number">
+                            24/7
+                        </div>
+
+                        <div class="stat-text">
+                            Emergency Access
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <div class="stat-number">
+                            4
+                        </div>
+
+                        <div class="stat-text">
+                            Core Categories
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <div class="stat-number">
+                            1
+                        </div>
+
+                        <div class="stat-text">
+                            Simple Platform
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CITIES
+        ====================================================== -->
+
+        <section
+            class="section"
+            id="cities"
+        >
+
+            <div class="container">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <div class="section-kicker">
+                            Pick a destination
+                        </div>
+
+                        <h2 class="section-title">
+                            Explore Popular Cities
+                        </h2>
+
+                        <p class="section-description">
+                            Select a city and HelpMitr will prepare
+                            the information around that destination.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="#home"
+                        class="view-all-btn"
+                    >
+                        Search another city →
+                    </a>
+
+                </div>
+
+
+
+                <div class="city-grid">
+
+
+                    <div
+                        class="city-card"
+                        onclick="selectCity('Gaya')"
+                    >
+
+                        <div class="city-top">
+
+                            <div class="city-icon">
+                                🛕
+                            </div>
+
+                            <div class="city-arrow">
+                                →
+                            </div>
+
+                        </div>
+
+
+                        <h3>
+                            Gaya
+                        </h3>
+
+                        <p>
+                            Spiritual, historical and cultural
+                            destination.
+                        </p>
+
+                    </div>
+
+
+
+                    <div
+                        class="city-card"
+                        onclick="selectCity('Delhi')"
+                    >
+
+                        <div class="city-top">
+
+                            <div class="city-icon">
+                                🏛️
+                            </div>
+
+                            <div class="city-arrow">
+                                →
+                            </div>
+
+                        </div>
+
+
+                        <h3>
+                            Delhi
+                        </h3>
+
+                        <p>
+                            Capital city filled with food,
+                            history and experiences.
+                        </p>
+
+                    </div>
+
+
+
+                    <div
+                        class="city-card"
+                        onclick="selectCity('Patna')"
+                    >
+
+                        <div class="city-top">
+
+                            <div class="city-icon">
+                                🌆
+                            </div>
+
+                            <div class="city-arrow">
+                                →
+                            </div>
+
+                        </div>
+
+
+                        <h3>
+                            Patna
+                        </h3>
+
+                        <p>
+                            A growing city with culture,
+                            food and modern attractions.
+                        </p>
+
+                    </div>
+
+
+
+                    <div
+                        class="city-card"
+                        onclick="selectCity('Mumbai')"
+                    >
+
+                        <div class="city-top">
+
+                            <div class="city-icon">
+                                🌊
+                            </div>
+
+                            <div class="city-arrow">
+                                →
+                            </div>
+
+                        </div>
+
+
+                        <h3>
+                            Mumbai
+                        </h3>
+
+                        <p>
+                            Fast-paced city with iconic food
+                            and places to explore.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CITY PANEL
+        ====================================================== -->
+
+        <section class="section soft">
+
+            <div class="container">
+
+                <div class="city-panel">
+
+                    <div class="city-panel-info">
+
+                        <span class="selected-label">
+                            Currently exploring
+                        </span>
+
+                        <h2
+                            class="selected-city-name"
+                            id="selectedCity"
+                        >
+                            Gaya
+                        </h2>
+
+                        <p
+                            class="selected-city-text"
+                            id="selectedCityDescription"
+                        >
+                            Choose any city above or search a
+                            city to personalize your experience.
+                        </p>
+
+                    </div>
+
+
+                    <div class="city-panel-buttons">
+
+                        <button
+                            class="panel-btn"
+                            onclick="scrollToSection('emergency')"
+                        >
+                            🚨 Emergency
+                        </button>
+
+                        <button
+                            class="panel-btn"
+                            onclick="scrollToSection('restaurants')"
+                        >
+                            🍽️ Restaurants
+                        </button>
+
+                        <button
+                            class="panel-btn"
+                            onclick="scrollToSection('hotels')"
+                        >
+                            🏨 Hotels
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CATEGORIES
+        ====================================================== -->
+
+        <section
+            class="section"
+            id="categories"
+        >
+
+            <div class="container">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <div class="section-kicker">
+                            Everything in one place
+                        </div>
+
+                        <h2 class="section-title">
+                            What do you need?
+                        </h2>
+
+                        <p class="section-description">
+                            HelpMitr keeps the most useful city
+                            information easy to find.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="category-grid">
+
+
+                    <div class="category-card">
+
+                        <div class="category-icon">
+                            🚨
+                        </div>
+
+                        <h3>
+                            Emergency Contacts
+                        </h3>
+
+                        <p>
+                            Get quick access to emergency
+                            assistance when you need it.
+                        </p>
+
+                        <a
+                            href="#emergency"
+                            class="category-link"
+                        >
+                            View emergency →
+                        </a>
+
+                    </div>
+
+
+
+                    <div class="category-card">
+
+                        <div class="category-icon">
+                            🍽️
+                        </div>
+
+                        <h3>
+                            Restaurants
+                        </h3>
+
+                        <p>
+                            Discover food options and filter
+                            restaurants according to your needs.
+                        </p>
+
+                        <a
+                            href="#restaurants"
+                            class="category-link"
+                        >
+                            Explore restaurants →
+                        </a>
+
+                    </div>
+
+
+
+                    <div class="category-card">
+
+                        <div class="category-icon">
+                            🏨
+                        </div>
+
+                        <h3>
+                            Hotels
+                        </h3>
+
+                        <p>
+                            Compare different stay options
+                            and find a place that fits you.
+                        </p>
+
+                        <a
+                            href="#hotels"
+                            class="category-link"
+                        >
+                            Explore hotels →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             EMERGENCY
+        ====================================================== -->
+
+        <section
+            class="section emergency-section"
+            id="emergency"
+        >
+
+            <div class="container">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <div class="section-kicker">
+                            Need help now?
+                        </div>
+
+                        <h2 class="section-title">
+                            Emergency Contacts
+                        </h2>
+
+                        <p class="section-description">
+                            Keep important emergency access
+                            easy to reach.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="emergency-banner">
+
+                    <div class="emergency-banner-icon">
+                        🚨
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Emergency number: 112
+                        </strong>
+
+                        <p>
+                            Use the emergency button below when
+                            immediate assistance is required.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="emergency-grid">
+
+
+                    <div class="emergency-card">
+
+                        <div class="emergency-icon">
+                            🚓
+                        </div>
+
+                        <h3>
+                            Police
+                        </h3>
+
+                        <p>
+                            For police assistance.
+                        </p>
+
+                        <a
+                            href="tel:112"
+                            class="call-btn"
+                        >
+                            📞 Call 112
+                        </a>
+
+                    </div>
+
+
+
+                    <div class="emergency-card">
+
+                        <div class="emergency-icon">
+                            🚑
+                        </div>
+
+                        <h3>
+                            Ambulance
+                        </h3>
+
+                        <p>
+                            For medical emergencies.
+                        </p>
+
+                        <a
+                            href="tel:112"
+                            class="call-btn"
+                        >
+                            📞 Call 112
+                        </a>
+
+                    </div>
+
+
+
+                    <div class="emergency-card">
+
+                        <div class="emergency-icon">
+                            🚒
+                        </div>
+
+                        <h3>
+                            Fire & Rescue
+                        </h3>
+
+                        <p>
+                            For fire and rescue emergencies.
+                        </p>
+
+                        <a
+                            href="tel:112"
+                            class="call-btn"
+                        >
+                            📞 Call 112
+                        </a>
+
+                    </div>
+
+
+
+                    <div class="emergency-card">
+
+                        <div class="emergency-icon">
+                            🆘
+                        </div>
+
+                        <h3>
+                            Emergency
+                        </h3>
+
+                        <p>
+                            Unified emergency access.
+                        </p>
+
+                        <a
+                            href="tel:112"
+                            class="call-btn"
+                        >
+                            📞 Call 112
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             RESTAURANTS
+        ====================================================== -->
+
+        <section
+            class="section"
+            id="restaurants"
+        >
+
+            <div class="container">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <div class="section-kicker">
+                            Find good food
+                        </div>
+
+                        <h2 class="section-title">
+                            Restaurants
+                        </h2>
+
+                        <p class="section-description">
+                            Choose according to food preference,
+                            budget and cuisine.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="filter-bar">
+
+                    <button
+                        class="filter-btn active"
+                        onclick="filterRestaurants('all', this)"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        onclick="filterRestaurants('veg', this)"
+                    >
+                        🥗 Veg
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        onclick="filterRestaurants('nonveg', this)"
+                    >
+                        🍗 Non-Veg
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        onclick="filterRestaurants('budget', this)"
+                    >
+                        💰 Budget
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        onclick="filterRestaurants('premium', this)"
+                    >
+                        ✨ Premium
+                    </button>
+
+                </div>
+
+
+
+                <div
+                    class="listing-grid"
+                    id="restaurantGrid"
+                >
+
+
+                    <!-- Restaurant 1 -->
+
+                    <div
+                        class="restaurant-card"
+                        data-type="veg budget"
+                    >
+
+                        <div class="listing-visual">
+
+                            🥗
+
+                            <span class="listing-badge">
+                                VEG
+                            </span>
+
+                            <span class="rating-badge">
+                                ⭐ 4.5
+                            </span>
+
+                        </div>
+
+
+                        <div class="listing-info">
+
+                            <h3>
+                                Green Garden
+                            </h3>
+
+                            <p>
+                                North Indian • Chinese
+                            </p>
+
+                            <p>
+                                📍 City Centre
+                            </p>
+
+
+                            <div class="listing-meta">
+
+                                <span class="price">
+                                    ₹₹
+                                </span>
+
+                                <button
+                                    class="small-btn"
+                                    onclick="openMap('restaurant')"
+                                >
+                                    🗺️ Map
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Restaurant 2 -->
+
+                    <div
+                        class="restaurant-card"
+                        data-type="nonveg premium"
+                    >
+
+                        <div class="listing-visual">
+
+                            🍗
+
+                            <span class="listing-badge">
+                                NON-VEG
+                            </span>
+
+                            <span class="rating-badge">
+                                ⭐ 4.4
+                            </span>
+
+                        </div>
+
+
+                        <div class="listing-info">
+
+                            <h3>
+                                Royal Kitchen
+                            </h3>
+
+                            <p>
+                                Mughlai • Biryani
+                            </p>
+
+                            <p>
+                                📍 Main Market
+                            </p>
+
+
+                            <div class="listing-meta">
+
+                                <span class="price">
+                                    ₹₹₹
+                                </span>
+
+                                <button
+                                    class="small-btn"
+                                    onclick="openMap('restaurant')"
+                                >
+                                    🗺️ Map
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Restaurant 3 -->
+
+                    <div
+                        class="restaurant-card"
+                        data-type="veg premium"
+                    >
+
+                        <div class="listing-visual">
+
+                            🍛
+
+                            <span class="listing-badge">
+                                VEG
+                            </span>
+
+                            <span class="rating-badge">
+                                ⭐ 4.7
+                            </span>
+
+                        </div>
+
+
+                        <div class="listing-info">
+
+                            <h3>
+                                Taste Hub
+                            </h3>
+
+                            <p>
+                                Indian • South Indian
+                            </p>
+
+                            <p>
+                                📍 Near Central Road
+                            </p>
+
+
+                            <div class="listing-meta">
+
+                                <span class="price">
+                                    ₹₹₹
+                                </span>
+
+                                <button
+                                    class="small-btn"
+                                    onclick="openMap('restaurant')"
+                                >
+                                    🗺️ Map
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Restaurant 4 -->
+
+                    <div
+                        class="restaurant-card"
+                        data-type="nonveg budget"
+                    >
+
+                        <div class="listing-visual">
+
+                            🍖
+
+                            <span class="listing-badge">
+                                NON-VEG
+                            </span>
+
+                            <span class="rating-badge">
+                                ⭐ 4.2
+                            </span>
+
+                        </div>
+
+
+                        <div class="listing-info">
+
+                            <h3>
+                                Food Junction
+                            </h3>
+
+                            <p>
+                                Biryani • Kebab
+                            </p>
+
+                            <p>
+                                📍 Railway Road
+                            </p>
+
+
+                            <div class="listing-meta">
+
+                                <span class="price">
+                                    ₹₹
+                                </span>
+
+                                <button
+                                    class="small-btn"
+                                    onclick="openMap('restaurant')"
+                                >
+                                    🗺️ Map
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Restaurant 5 -->
+
+                    <div
+                        class="restaurant-card"
+                        data-type="veg budget"
+                    >
+
+                        <div class="listing-visual">
+
+                            🍜
+
+                            <span class="listing-badge">
+                                VEG
+                            </span>
+
+                            <span class="rating-badge">
+                                ⭐ 4.3
+                            </span>
+
+                        </div>
+
+
+                        <div class="listing-info">
+
+                            <h3>
+                                Street Bowl
+                            </h3>
+
+                            <p>
+                                Fast Food • Snacks
+                            </p>
+
+                            <p>
+                                📍 Bus Stand Area
+                            </p>
+
+
+                            <div class="listing-meta">
+
+                                <span class="price">
+                                    ₹
+                                </span>
+
+                                <button
+                                    class="small-btn"
+                                    onclick="openMap('restaurant')"
+                                >
+                                    🗺️ Map
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Restaurant 6 -->
+
+                    <div
+                        class="restaurant-card"
+                        data-type="nonveg premium"
+                    >
+
+                        <div class="listing-visual">
+
+                            🍗
+
+                            <span class="listing-badge">
+                                NON-VEG
+                            </span>
+
+                            <span class="rating-badge">
+                                ⭐ 4.6
+                            </span>
+
+                        </div>
+
+
+                        <div class="listing-info">
+
+                            <h3>
+                                Spice Palace
+                            </h3>
+
+                            <p>
+                                Punjabi • Tandoori
+                            </p>
+
+                            <p>
+                                📍 Downtown
+                            </p>
+
+
+                            <div class="listing-meta">
+
+                                <span class="price">
+                                    ₹₹₹
+                                </span>
+
+                                <button
+                                    class="small-btn"
+                                    onclick="openMap('restaurant')"
+                                >
+                                    🗺️ Map
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="empty-message"
+                    id="restaurantEmpty"
+                >
+                    No restaurant matches this filter.
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             HOTELS
+        ====================================================== -->
+
+        <section
+            class="section soft"
+            id="hotels"
+        >
+
+            <div class="container">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <div class="section-kicker">
+                            Find your stay
+                        </div>
+
+                        <h2 class="section-title">
+                            Hotels
+                        </h2>
+
+                        <p class="section-description">
+                            From affordable stays to premium
+                            options, find what suits your trip.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="filter-bar">
+
+                    <button
+                        class="filter-btn active"
+                        onclick="filterHotels('all', this)"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        onclick="filterHotels('budget', this)"
+                    >
+                        💰 Budget
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        onclick="filterHotels('premium', this)"
+                    >
+                        ✨ Premium
+                    </button>
+
+                </div>
+
+
+
+                <div
+                    class="listing-grid"
+                    id="hotelGrid"
+                >
+
+
+                    <!-- Hotel 1 -->
+
+                    <div
+                        class="hotel-card"
+                        data-type="budget"
+                    >
+
+                        <div
+                            class="listing-visual hotel-visual"
+                        >
+
+                            🏨
+
+                            <span class="listing-badge">
+                                BUDGET
+                            </span>
+
+                            <span class="rating-badge">
+                                ⭐ 4.2
+                            </span>
+
+                        </div>
+
+
+                        <div class="listing-info">
+
+                            <h3>
+                                City View Stay
+                            </h3>
+
+                            <p>
+                                Comfortable budget stay
+                            </p>
+
+                            <p>
+                                📍 Near City Centre
+                            </p>
+
+
+                            <div class="listing-meta">
+
+                                <span class="price">
+                                    ₹1,200/night
+                                </span>
+
+                                <button
+                                    class="small-btn"
+                                    onclick="openMap('hotel')"
+                                >
+                                    🗺️ Map
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Hotel 2 -->
+
+                    <div
+                        class="hotel-card"
+                        data-type="premium"
+                    >
+
+                        <div
+                            class="listing-visual hotel-visual"
+                        >
+
+                            🏨
+
+                            <span class="listing-badge">
+                                PREMIUM
+                            </span>
+
+                            <span class="rating-badge">
+                                ⭐ 4.8
+                            </span>
+
+                        </div>
+
+
+                        <div class="listing-info">
+
+                            <h3>
+                                Grand Palace
+                            </h3>
+
+                            <p>
+                                Premium city stay
+                            </p>
+
+                            <p>
+                                📍 Main Road
+                            </p>
+
+
+                            <div class="listing-meta">
+
+                                <span class="price">
+                                    ₹3,500/night
+                                </span>
+
+                                <button
+                                    class="small-btn"
+                                    onclick="openMap('hotel')"
+                                >
+                                    🗺️ Map
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Hotel 3 -->
+
+                    <div
+                        class="hotel-card"
+                        data-type="budget"
+                    >
+
+                        <div
+                            class="listing-visual hotel-visual"
+                        >
+
+                            🏠
+
+                            <span class="listing-badge">
+                                BUDGET
+                            </span>
+
+                            <span class="rating-badge">
+                                ⭐ 4.1
+                            </span>
+
+                        </div>
+
+
+                        <div class="listing-info">
+
+                            <h3>
+                                Comfort Stay
+                            </h3>
+
+                            <p>
+                                Simple and affordable
+                            </p>
+
+                            <p>
+                                📍 Railway Station Road
+                            </p>
+
+
+                            <div class="listing-meta">
+
+                                <span class="price">
+                                    ₹900/night
+                                </span>
+
+                                <button
+                                    class="small-btn"
+                                    onclick="openMap('hotel')"
+                                >
+                                    🗺️ Map
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Hotel 4 -->
+
+                    <div
+                        class="hotel-card"
+                        data-type="premium"
+                    >
+
+                        <div
+                            class="listing-visual hotel-visual"
+                        >
+
+                            🏩
+
+                            <span class="listing-badge">
+                                PREMIUM
+                            </span>
+
+                            <span class="rating-badge">
+                                ⭐ 4.7
+                            </span>
+
+                        </div>
+
+
+                        <div class="listing-info">
+
+                            <h3>
+                                Royal Residency
+                            </h3>
+
+                            <p>
+                                Stylish premium accommodation
+                            </p>
+
+                            <p>
+                                📍 Airport Road
+                            </p>
+
+
+                            <div class="listing-meta">
+
+                                <span class="price">
+                                    ₹4,200/night
+                                </span>
+
+                                <button
+                                    class="small-btn"
+                                    onclick="openMap('hotel')"
+                                >
+                                    🗺️ Map
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Hotel 5 -->
+
+                    <div
+                        class="hotel-card"
+                        data-type="budget"
+                    >
+
+                        <div
+                            class="listing-visual hotel-visual"
+                        >
+
+                            🛏️
+
+                            <span class="listing-badge">
+                                BUDGET
+                            </span>
+
+                            <span class="rating-badge">
+                                ⭐ 4.0
+                            </span>
+
+                        </div>
+
+
+                        <div class="listing-info">
+
+                            <h3>
+                                Easy Stay
+                            </h3>
+
+                            <p>
+                                Good option for short trips
+                            </p>
+
+                            <p>
+                                📍 Market Area
+                            </p>
+
+
+                            <div class="listing-meta">
+
+                                <span class="price">
+                                    ₹1,000/night
+                                </span>
+
+                                <button
+                                    class="small-btn"
+                                    onclick="openMap('hotel')"
+                                >
+                                    🗺️ Map
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Hotel 6 -->
+
+                    <div
+                        class="hotel-card"
+                        data-type="premium"
+                    >
+
+                        <div
+                            class="listing-visual hotel-visual"
+                        >
+
+                            🏨
+
+                            <span class="listing-badge">
+                                PREMIUM
+                            </span>
+
+                            <span class="rating-badge">
+                                ⭐ 4.9
+                            </span>
+
+                        </div>
+
+
+                        <div class="listing-info">
+
+                            <h3>
+                                The Grand Stay
+                            </h3>
+
+                            <p>
+                                Premium rooms and facilities
+                            </p>
+
+                            <p>
+                                📍 Central District
+                            </p>
+
+
+                            <div class="listing-meta">
+
+                                <span class="price">
+                                    ₹5,000/night
+                                </span>
+
+                                <button
+                                    class="small-btn"
+                                    onclick="openMap('hotel')"
+                                >
+                                    🗺️ Map
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="empty-message"
+                    id="hotelEmpty"
+                >
+                    No hotel matches this filter.
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CTA
+        ====================================================== -->
+
+        <section class="cta">
+
+            <div class="container">
+
+                <div class="cta-box">
+
+                    <div class="cta-content">
+
+                        <h2>
+                            One city.
+                            One search.
+                            One HelpMitr.
+                        </h2>
+
+                        <p>
+                            Built to make exploring an unfamiliar
+                            city simpler, faster and more organized.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="#home"
+                        class="cta-btn"
+                    >
+                        🔍 Search a City
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div class="container">
+
+
+            <div class="footer-grid">
+
+
+                <div>
+
+                    <div class="footer-logo">
+                        🤝 HelpMitr
+                    </div>
+
+                    <p class="footer-description">
+                        Your smart city companion. Discover food,
+                        stay options and useful information in one
+                        simple platform.
+                    </p>
+
+                </div>
+
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        Explore
+                    </h4>
+
+                    <a href="#cities">
+                        Cities
+                    </a>
+
+                    <a href="#restaurants">
+                        Restaurants
+                    </a>
+
+                    <a href="#hotels">
+                        Hotels
+                    </a>
+
+                </div>
+
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        Quick Access
+                    </h4>
+
+                    <a href="#emergency">
+                        Emergency
+                    </a>
+
+                    <a href="#categories">
+                        Categories
+                    </a>
+
+                    <a href="#home">
+                        Search City
+                    </a>
+
+                </div>
+
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        HelpMitr
+                    </h4>
+
+                    <a href="#home">
+                        Home
+                    </a>
+
+                    <a href="#cities">
+                        Discover
+                    </a>
+
+                    <a href="#home">
+                        About Project
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 HelpMitr. All rights reserved.
+                </span>
+
+                <span>
+                    Made with ❤️ for city explorers.
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- TOAST -->
+
+    <div
+        id="toast"
+        class="toast"
+    ></div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        /* =====================================================
+           CITY DATA
+        ===================================================== */
+
+        const cities = {
+
+            Gaya: {
+                description:
+                    "Explore Gaya with useful information about food, stays and emergency access."
+            },
+
+            Delhi: {
+                description:
+                    "Explore Delhi with useful information about food, stays and emergency access."
+            },
+
+            Patna: {
+                description:
+                    "Explore Patna with useful information about food, stays and emergency access."
+            },
+
+            Mumbai: {
+                description:
+                    "Explore Mumbai with useful information about food, stays and emergency access."
+            },
+
+            Bengaluru: {
+                description:
+                    "Explore Bengaluru with useful information about food, stays and emergency access."
+            },
+
+            Kolkata: {
+                description:
+                    "Explore Kolkata with useful information about food, stays and emergency access."
+            },
+
+            Jaipur: {
+                description:
+                    "Explore Jaipur with useful information about food, stays and emergency access."
+            },
+
+            Hyderabad: {
+                description:
+                    "Explore Hyderabad with useful information about food, stays and emergency access."
+            },
+
+            Pune: {
+                description:
+                    "Explore Pune with useful information about food, stays and emergency access."
+            },
+
+            Varanasi: {
+                description:
+                    "Explore Varanasi with useful information about food, stays and emergency access."
+            }
+
+        };
+
+
+        /* =====================================================
+           SELECT CITY
+        ====================================================== */
+
+        function selectCity(city) {
+
+            const cityName =
+                document.getElementById(
+                    "selectedCity"
+                );
+
+            const cityDescription =
+                document.getElementById(
+                    "selectedCityDescription"
+                );
+
+
+            cityName.textContent = city;
+
+
+            cityDescription.textContent =
+                cities[city]
+                    ? cities[city].description
+                    : "Explore this city with HelpMitr.";
+
+
+            showToast(
+                "📍 " +
+                city +
+                " selected"
+            );
+
+
+            document.getElementById(
+                "cityInput"
+            ).value = city;
+
+
+            document.getElementById(
+                "citySearchResult"
+            ).style.display = "none";
+
+
+            scrollToSection("categories");
+        }
+
+
+        /* =====================================================
+           CITY SEARCH
+        ====================================================== */
+
+        function searchCity(isButtonClick = false) {
+
+            const input =
+                document.getElementById(
+                    "cityInput"
+                );
+
+            const result =
+                document.getElementById(
+                    "citySearchResult"
+                );
+
+
+            const value =
+                input.value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (!value) {
+
+                result.innerHTML = "";
+
+                result.style.display = "none";
+
+                return;
+            }
+
+
+            const matchedCities =
+                Object.keys(cities)
+                    .filter(city =>
+                        city
+                            .toLowerCase()
+                            .includes(value)
+                    );
+
+
+            if (
+                matchedCities.length === 0
+            ) {
+
+                result.innerHTML = `
+
+                    <div class="search-result-item">
+
+                        <div class="result-city">
+
+                            <div class="result-icon">
+                                🔎
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    City not found
+                                </strong>
+
+                                <small>
+                                    Try Gaya, Delhi or Patna
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+                result.style.display = "block";
+
+                return;
+            }
+
+
+            result.innerHTML =
+                matchedCities
+                    .map(city => `
+
+                        <div
+                            class="search-result-item"
+                            onclick="selectCity('${city}')"
+                        >
+
+                            <div class="result-city">
+
+                                <div class="result-icon">
+                                    📍
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        ${city}
+                                    </strong>
+
+                                    <small>
+                                        Explore ${city}
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                            <span>
+                                →
+                            </span>
+
+                        </div>
+
+                    `)
+                    .join("");
+
+
+            result.style.display = "block";
+
+
+            if (isButtonClick) {
+
+                selectCity(
+                    matchedCities[0]
+                );
+            }
+        }
+
+
+        /* =====================================================
+           SEARCH KEYBOARD
+        ====================================================== */
+
+        function handleSearchKey(event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                searchCity(true);
+            }
+
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                document.getElementById(
+                    "citySearchResult"
+                ).style.display = "none";
+
+            }
+        }
+
+
+        /* =====================================================
+           RESTAURANT FILTER
+        ====================================================== */
+
+        function filterRestaurants(
+            filter,
+            button
+        ) {
+
+            const cards =
+                document.querySelectorAll(
+                    "#restaurantGrid .restaurant-card"
+                );
+
+
+            let visible = 0;
+
+
+            cards.forEach(card => {
+
+                const types =
+                    card
+                        .getAttribute(
+                            "data-type"
+                        );
+
+
+                let show = false;
+
+
+                if (
+                    filter === "all"
+                ) {
+
+                    show = true;
+
+                } else {
+
+                    show =
+                        types
+                            .split(" ")
+                            .includes(filter);
+                }
+
+
+                if (show) {
+
+                    card.style.display =
+                        "block";
+
+                    visible++;
+
+                } else {
+
+                    card.style.display =
+                        "none";
+                }
+
+            });
+
+
+            document
+                .getElementById(
+                    "restaurantEmpty"
+                )
+                .style.display =
+                    visible === 0
+                        ? "block"
+                        : "none";
+
+
+            updateActiveButton(
+                button
+            );
+        }
+
+
+        /* =====================================================
+           HOTEL FILTER
+        ====================================================== */
+
+        function filterHotels(
+            filter,
+            button
+        ) {
+
+            const cards =
+                document.querySelectorAll(
+                    "#hotelGrid .hotel-card"
+                );
+
+
+            let visible = 0;
+
+
+            cards.forEach(card => {
+
+                const type =
+                    card.getAttribute(
+                        "data-type"
+                    );
+
+
+                const show =
+                    filter === "all" ||
+                    type === filter;
+
+
+                if (show) {
+
+                    card.style.display =
+                        "block";
+
+                    visible++;
+
+                } else {
+
+                    card.style.display =
+                        "none";
+                }
+
+            });
+
+
+            document
+                .getElementById(
+                    "hotelEmpty"
+                )
+                .style.display =
+                    visible === 0
+                        ? "block"
+                        : "none";
+
+
+            updateActiveButton(
+                button
+            );
+        }
+
+
+        /* =====================================================
+           ACTIVE FILTER
+        ====================================================== */
+
+        function updateActiveButton(
+            activeButton
+        ) {
+
+            const parent =
+                activeButton.parentElement;
+
+
+            parent
+                .querySelectorAll(
+                    ".filter-btn"
+                )
+                .forEach(btn => {
+
+                    btn.classList.remove(
+                        "active"
+                    );
+                });
+
+
+            activeButton.classList.add(
+                "active"
+            );
+        }
+
+
+        /* =====================================================
+           MAP
+        ====================================================== */
+
+        function openMap(type) {
+
+            const city =
+                document.getElementById(
+                    "selectedCity"
+                ).textContent;
+
+
+            let query =
+                type === "restaurant"
+                    ? `${city} restaurants`
+                    : `${city} hotels`;
+
+
+            const url =
+                "https://www.google.com/maps/search/" +
+                encodeURIComponent(query);
+
+
+            window.open(
+                url,
+                "_blank"
+            );
+        }
+
+
+        /* =====================================================
+           SCROLL
+        ====================================================== */
+
+        function scrollToSection(
+            id
+        ) {
+
+            const section =
+                document.getElementById(id);
+
+
+            if (!section) return;
+
+
+            section.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+
+
+        /* =====================================================
+           DARK MODE
+        ====================================================== */
+
+        function toggleTheme() {
+
+            document.body
+                .classList
+                .toggle("dark");
+
+
+            const button =
+                document.getElementById(
+                    "themeBtn"
+                );
+
+
+            const isDark =
+                document.body
+                    .classList
+                    .contains("dark");
+
+
+            button.textContent =
+                isDark ? "☀️" : "🌙";
+
+
+            localStorage.setItem(
+                "helpmitr-theme",
+                isDark
+                    ? "dark"
+                    : "light"
+            );
+        }
+
+
+        /* =====================================================
+           LOAD THEME
+        ====================================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                const savedTheme =
+                    localStorage.getItem(
+                        "helpmitr-theme"
+                    );
+
+
+                if (
+                    savedTheme === "dark"
+                ) {
+
+                    document.body
+                        .classList
+                        .add("dark");
+
+
+                    document.getElementById(
+                        "themeBtn"
+                    ).textContent = "☀️";
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           TOAST
+        ====================================================== */
+
+        let toastTimer;
+
+
+        function showToast(
+            message
+        ) {
+
+            const toast =
+                document.getElementById(
+                    "toast"
+                );
+
+
+            toast.textContent =
+                message;
+
+
+            toast.classList.add(
+                "show"
+            );
+
+
+            clearTimeout(
+                toastTimer
+            );
+
+
+            toastTimer =
+                setTimeout(() => {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                }, 2200);
+        }
+
+
+        /* =====================================================
+           CLOSE SEARCH WHEN CLICKING OUTSIDE
+        ====================================================== */
+
+        document.addEventListener(
+            "click",
+            function(event) {
+
+                const searchWrapper =
+                    document.querySelector(
+                        ".search-wrapper"
+                    );
+
+
+                if (
+                    !searchWrapper.contains(
+                        event.target
+                    )
+                ) {
+
+                    document.getElementById(
+                        "citySearchResult"
+                    ).style.display = "none";
+                }
+
+            }
+        );
+
+    </script>
+
+
+</body>
+</html>

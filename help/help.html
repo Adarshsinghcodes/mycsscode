@@ -1,0 +1,1630 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HelpMitr - Your City Companion</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="logo">
+            <span>Help</span>Mitr
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#emergency">Emergency</a>
+            <a href="#restaurants">Restaurants</a>
+            <a href="#hotels">Hotels</a>
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HOME ================= -->
+
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Your City,
+                <span>Your Guide.</span>
+            </h1>
+
+            <p>
+                Discover restaurants, hotels and emergency
+                contacts in any city.
+            </p>
+
+
+            <!-- CITY SEARCH -->
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Search city e.g. Gaya, Delhi..."
+                    onkeyup="searchCity()"
+                >
+
+                <button onclick="searchCity()">
+                    Search
+                </button>
+
+            </div>
+
+
+            <div id="searchResult" class="search-result">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CITY SELECTOR ================= -->
+
+    <section class="city-section">
+
+        <h2>Explore Your City</h2>
+
+        <p>
+            Select a city to explore useful information.
+        </p>
+
+
+        <div class="city-buttons">
+
+            <button onclick="selectCity('Gaya')">
+                📍 Gaya
+            </button>
+
+            <button onclick="selectCity('Delhi')">
+                📍 Delhi
+            </button>
+
+            <button onclick="selectCity('Patna')">
+                📍 Patna
+            </button>
+
+            <button onclick="selectCity('Mumbai')">
+                📍 Mumbai
+            </button>
+
+        </div>
+
+
+        <h3 id="selectedCity">
+            Select a city
+        </h3>
+
+    </section>
+
+
+
+    <!-- ================= FEATURES ================= -->
+
+    <section class="features">
+
+        <h2>What Do You Need?</h2>
+
+
+        <div class="feature-container">
+
+
+            <!-- EMERGENCY -->
+
+            <div class="feature-card emergency-card">
+
+                <div class="feature-icon">
+                    🚨
+                </div>
+
+                <h3>
+                    Emergency Contacts
+                </h3>
+
+                <p>
+                    Quickly find important emergency
+                    numbers.
+                </p>
+
+                <button
+                    onclick="showSection('emergency')"
+                >
+                    View Contacts
+                </button>
+
+            </div>
+
+
+
+            <!-- RESTAURANTS -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🍽️
+                </div>
+
+                <h3>
+                    Restaurants
+                </h3>
+
+                <p>
+                    Find restaurants and discover
+                    delicious food.
+                </p>
+
+                <button
+                    onclick="showSection('restaurants')"
+                >
+                    Find Restaurants
+                </button>
+
+            </div>
+
+
+
+            <!-- HOTELS -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🏨
+                </div>
+
+                <h3>
+                    Hotels
+                </h3>
+
+                <p>
+                    Find comfortable places to stay
+                    in your city.
+                </p>
+
+                <button
+                    onclick="showSection('hotels')"
+                >
+                    Find Hotels
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= EMERGENCY ================= -->
+
+    <section
+        id="emergency"
+        class="content-section"
+    >
+
+        <div class="section-heading">
+
+            <span>🚨</span>
+
+            <h2>
+                Emergency Contacts
+            </h2>
+
+            <p>
+                Important numbers you may need.
+            </p>
+
+        </div>
+
+
+        <div class="emergency-container">
+
+
+            <div class="emergency-card-box">
+
+                <div class="big-icon">
+                    🚓
+                </div>
+
+                <h3>
+                    Police
+                </h3>
+
+                <p>
+                    For police assistance
+                </p>
+
+                <a href="tel:112">
+                    <button>
+                        Call 112
+                    </button>
+                </a>
+
+            </div>
+
+
+
+            <div class="emergency-card-box">
+
+                <div class="big-icon">
+                    🚑
+                </div>
+
+                <h3>
+                    Ambulance
+                </h3>
+
+                <p>
+                    Medical emergency
+                </p>
+
+                <a href="tel:112">
+                    <button>
+                        Call 112
+                    </button>
+                </a>
+
+            </div>
+
+
+
+            <div class="emergency-card-box">
+
+                <div class="big-icon">
+                    🚒
+                </div>
+
+                <h3>
+                    Fire & Rescue
+                </h3>
+
+                <p>
+                    Fire or rescue emergency
+                </p>
+
+                <a href="tel:112">
+                    <button>
+                        Call 112
+                    </button>
+                </a>
+
+            </div>
+
+
+
+            <div class="emergency-card-box">
+
+                <div class="big-icon">
+                    📞
+                </div>
+
+                <h3>
+                    Emergency
+                </h3>
+
+                <p>
+                    Unified emergency number
+                </p>
+
+                <a href="tel:112">
+                    <button>
+                        Call 112
+                    </button>
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= RESTAURANTS ================= -->
+
+    <section
+        id="restaurants"
+        class="content-section"
+    >
+
+        <div class="section-heading">
+
+            <span>🍽️</span>
+
+            <h2>
+                Restaurants
+            </h2>
+
+            <p>
+                Discover food around your city.
+            </p>
+
+        </div>
+
+
+        <div class="filter-box">
+
+            <button onclick="filterFood('all')">
+                All
+            </button>
+
+            <button onclick="filterFood('veg')">
+                🥗 Veg
+            </button>
+
+            <button onclick="filterFood('nonveg')">
+                🍗 Non-Veg
+            </button>
+
+        </div>
+
+
+
+        <div class="restaurant-container">
+
+
+            <div
+                class="restaurant-card"
+                data-type="veg"
+            >
+
+                <div class="restaurant-image">
+                    🍛
+                </div>
+
+                <div class="restaurant-info">
+
+                    <span class="tag veg">
+                        VEG
+                    </span>
+
+                    <h3>
+                        Green Leaf Restaurant
+                    </h3>
+
+                    <p>
+                        North Indian • Chinese
+                    </p>
+
+                    <p>
+                        ⭐ 4.5 | ₹₹
+                    </p>
+
+                    <button onclick="viewRestaurant(
+                        'Green Leaf Restaurant'
+                    )">
+                        View Restaurant
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="restaurant-card"
+                data-type="nonveg"
+            >
+
+                <div class="restaurant-image">
+                    🍗
+                </div>
+
+                <div class="restaurant-info">
+
+                    <span class="tag nonveg">
+                        NON-VEG
+                    </span>
+
+                    <h3>
+                        Food Junction
+                    </h3>
+
+                    <p>
+                        Biryani • Mughlai
+                    </p>
+
+                    <p>
+                        ⭐ 4.3 | ₹₹
+                    </p>
+
+                    <button onclick="viewRestaurant(
+                        'Food Junction'
+                    )">
+                        View Restaurant
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="restaurant-card"
+                data-type="veg"
+            >
+
+                <div class="restaurant-image">
+                    🥗
+                </div>
+
+                <div class="restaurant-info">
+
+                    <span class="tag veg">
+                        VEG
+                    </span>
+
+                    <h3>
+                        Taste of India
+                    </h3>
+
+                    <p>
+                        Indian • South Indian
+                    </p>
+
+                    <p>
+                        ⭐ 4.6 | ₹₹
+                    </p>
+
+                    <button onclick="viewRestaurant(
+                        'Taste of India'
+                    )">
+                        View Restaurant
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="restaurant-card"
+                data-type="nonveg"
+            >
+
+                <div class="restaurant-image">
+                    🍖
+                </div>
+
+                <div class="restaurant-info">
+
+                    <span class="tag nonveg">
+                        NON-VEG
+                    </span>
+
+                    <h3>
+                        Royal Biryani
+                    </h3>
+
+                    <p>
+                        Biryani • Kebab
+                    </p>
+
+                    <p>
+                        ⭐ 4.4 | ₹₹₹
+                    </p>
+
+                    <button onclick="viewRestaurant(
+                        'Royal Biryani'
+                    )">
+                        View Restaurant
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= HOTELS ================= -->
+
+    <section
+        id="hotels"
+        class="content-section"
+    >
+
+        <div class="section-heading">
+
+            <span>🏨</span>
+
+            <h2>
+                Hotels
+            </h2>
+
+            <p>
+                Find a comfortable place to stay.
+            </p>
+
+        </div>
+
+
+
+        <div class="hotel-container">
+
+
+            <div class="hotel-card">
+
+                <div class="hotel-image">
+                    🏨
+                </div>
+
+                <div class="hotel-info">
+
+                    <span class="hotel-type">
+                        BUDGET
+                    </span>
+
+                    <h3>
+                        Hotel City View
+                    </h3>
+
+                    <p>
+                        ⭐ 4.2
+                    </p>
+
+                    <p>
+                        ₹1,200 / night
+                    </p>
+
+                    <p>
+                        📍 Near City Center
+                    </p>
+
+                    <button onclick="viewHotel(
+                        'Hotel City View'
+                    )">
+                        View Hotel
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="hotel-card">
+
+                <div class="hotel-image">
+                    🏨
+                </div>
+
+                <div class="hotel-info">
+
+                    <span class="hotel-type">
+                        PREMIUM
+                    </span>
+
+                    <h3>
+                        Grand Palace Hotel
+                    </h3>
+
+                    <p>
+                        ⭐ 4.7
+                    </p>
+
+                    <p>
+                        ₹3,500 / night
+                    </p>
+
+                    <p>
+                        📍 Main Road
+                    </p>
+
+                    <button onclick="viewHotel(
+                        'Grand Palace Hotel'
+                    )">
+                        View Hotel
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="hotel-card">
+
+                <div class="hotel-image">
+                    🏨
+                </div>
+
+                <div class="hotel-info">
+
+                    <span class="hotel-type">
+                        BUDGET
+                    </span>
+
+                    <h3>
+                        Comfort Stay
+                    </h3>
+
+                    <p>
+                        ⭐ 4.1
+                    </p>
+
+                    <p>
+                        ₹900 / night
+                    </p>
+
+                    <p>
+                        📍 Railway Station Road
+                    </p>
+
+                    <button onclick="viewHotel(
+                        'Comfort Stay'
+                    )">
+                        View Hotel
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="hotel-card">
+
+                <div class="hotel-image">
+                    🏨
+                </div>
+
+                <div class="hotel-info">
+
+                    <span class="hotel-type">
+                        PREMIUM
+                    </span>
+
+                    <h3>
+                        Royal Residency
+                    </h3>
+
+                    <p>
+                        ⭐ 4.8
+                    </p>
+
+                    <p>
+                        ₹4,200 / night
+                    </p>
+
+                    <p>
+                        📍 Airport Road
+                    </p>
+
+                    <button onclick="viewHotel(
+                        'Royal Residency'
+                    )">
+                        View Hotel
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+            HelpMitr
+        </div>
+
+        <p>
+            Your trusted city companion.
+        </p>
+
+        <p class="copyright">
+            © 2026 HelpMitr. All rights reserved.
+        </p>
+
+    </footer>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+```
+
+### 2. `style.css`
+
+```css
+/* ================= GENERAL ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f6f8fc;
+    color: #222;
+}
+
+
+/* ================= HEADER ================= */
+
+.header {
+    height: 75px;
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 8%;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    box-shadow:
+        0 2px 15px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #2563eb;
+}
+
+.header nav {
+    display: flex;
+    gap: 30px;
+}
+
+.header nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.header nav a:hover {
+    color: #2563eb;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 600px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eaf2ff,
+            #ffffff
+        );
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.hero h1 {
+    font-size: 60px;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #2563eb;
+}
+
+.hero p {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+
+/* ================= SEARCH ================= */
+
+.search-box {
+    width: 100%;
+    max-width: 700px;
+
+    display: flex;
+
+    margin: auto;
+
+    background: white;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.search-box input {
+    flex: 1;
+
+    padding: 20px;
+
+    border: none;
+
+    outline: none;
+
+    font-size: 17px;
+}
+
+.search-box button {
+    width: 130px;
+
+    border: none;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.search-box button:hover {
+    background: #1d4ed8;
+}
+
+.search-result {
+    margin-top: 25px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* ================= CITY ================= */
+
+.city-section {
+    text-align: center;
+
+    padding: 70px 8%;
+
+    background: white;
+}
+
+.city-section h2 {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.city-section p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.city-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.city-buttons button {
+    padding: 14px 25px;
+
+    border: 1px solid #ddd;
+
+    background: white;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+.city-buttons button:hover {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
+#selectedCity {
+    margin-top: 35px;
+    font-size: 25px;
+    color: #2563eb;
+}
+
+
+/* ================= FEATURES ================= */
+
+.features {
+    padding: 80px 8%;
+}
+
+.features > h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 45px;
+}
+
+.feature-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 30px;
+}
+
+.feature-card {
+    background: white;
+
+    padding: 40px 30px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 5px 25px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+}
+
+.feature-icon {
+    font-size: 55px;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 23px;
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.feature-card button,
+.restaurant-card button,
+.hotel-card button,
+.emergency-card-box button {
+    padding: 12px 20px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.feature-card button:hover,
+.restaurant-card button:hover,
+.hotel-card button:hover,
+.emergency-card-box button:hover {
+    background: #1d4ed8;
+}
+
+
+/* ================= CONTENT ================= */
+
+.content-section {
+    padding: 90px 8%;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-heading span {
+    font-size: 45px;
+}
+
+.section-heading h2 {
+    font-size: 38px;
+    margin: 10px 0;
+}
+
+.section-heading p {
+    color: #666;
+}
+
+
+/* ================= EMERGENCY ================= */
+
+.emergency-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 25px;
+}
+
+.emergency-card-box {
+    background: white;
+
+    padding: 30px;
+
+    text-align: center;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.big-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.emergency-card-box h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.emergency-card-box p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.emergency-card-box a {
+    text-decoration: none;
+}
+
+
+/* ================= RESTAURANT FILTER ================= */
+
+.filter-box {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.filter-box button {
+    padding: 10px 20px;
+
+    margin: 5px;
+
+    border: 1px solid #ddd;
+
+    background: white;
+
+    border-radius: 25px;
+
+    cursor: pointer;
+}
+
+.filter-box button:hover {
+    background: #2563eb;
+    color: white;
+}
+
+
+/* ================= RESTAURANTS ================= */
+
+.restaurant-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 25px;
+}
+
+.restaurant-card {
+    background: white;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.restaurant-image {
+    height: 180px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 70px;
+
+    background: #eef2ff;
+}
+
+.restaurant-info {
+    padding: 22px;
+}
+
+.restaurant-info h3 {
+    margin: 12px 0;
+}
+
+.restaurant-info p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.restaurant-info button {
+    margin-top: 10px;
+}
+
+.tag {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 15px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+.tag.veg {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.tag.nonveg {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+
+/* ================= HOTELS ================= */
+
+.hotel-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 25px;
+}
+
+.hotel-card {
+    background: white;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.hotel-image {
+    height: 180px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 70px;
+
+    background: #f1f5f9;
+}
+
+.hotel-info {
+    padding: 22px;
+}
+
+.hotel-info h3 {
+    margin: 12px 0;
+}
+
+.hotel-info p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.hotel-info button {
+    margin-top: 10px;
+}
+
+.hotel-type {
+    font-size: 11px;
+
+    background: #dbeafe;
+
+    color: #1d4ed8;
+
+    padding: 5px 10px;
+
+    border-radius: 15px;
+
+    font-weight: bold;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #111827;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 50px 20px;
+}
+
+.footer-logo {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+footer p {
+    color: #bbb;
+    margin: 8px;
+}
+
+.copyright {
+    margin-top: 25px !important;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+
+    .feature-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .emergency-container,
+    .restaurant-container,
+    .hotel-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .header {
+        padding: 0 20px;
+    }
+
+    .header nav {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero {
+        min-height: 500px;
+    }
+
+    .feature-container,
+    .emergency-container,
+    .restaurant-container,
+    .hotel-container {
+        grid-template-columns: 1fr;
+    }
+
+    .content-section {
+        padding: 60px 20px;
+    }
+
+}
+```
+
+### 3. `script.js`
+
+```javascript
+/* =========================================
+   CITY DATA
+========================================= */
+
+const cities = [
+    "Gaya",
+    "Delhi",
+    "Patna",
+    "Mumbai",
+    "Bengaluru",
+    "Kolkata",
+    "Jaipur",
+    "Hyderabad",
+    "Pune",
+    "Varanasi"
+];
+
+
+/* =========================================
+   CITY SEARCH
+========================================= */
+
+function searchCity() {
+
+    let input =
+        document.getElementById("cityInput");
+
+    let result =
+        document.getElementById("searchResult");
+
+    let searchText =
+        input.value.trim().toLowerCase();
+
+
+    if (searchText === "") {
+
+        result.innerHTML = "";
+
+        return;
+    }
+
+
+    let matchingCities =
+        cities.filter(function(city) {
+
+            return city
+                .toLowerCase()
+                .includes(searchText);
+
+        });
+
+
+    if (matchingCities.length === 0) {
+
+        result.innerHTML =
+            "❌ City not found";
+
+        return;
+    }
+
+
+    result.innerHTML =
+        "📍 " +
+        matchingCities.join(" • ");
+
+}
+
+
+/* =========================================
+   SELECT CITY
+========================================= */
+
+function selectCity(city) {
+
+    let selectedCity =
+        document.getElementById("selectedCity");
+
+
+    selectedCity.innerHTML =
+        "📍 You selected " + city;
+
+
+    document.getElementById("cityInput").value =
+        city;
+
+
+    document.getElementById("searchResult").innerHTML =
+        "Welcome to " + city + "!";
+
+
+    window.scrollTo({
+        top: 500,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================================
+   SHOW SECTION
+========================================= */
+
+function showSection(sectionId) {
+
+    let section =
+        document.getElementById(sectionId);
+
+
+    section.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================================
+   RESTAURANT FILTER
+========================================= */
+
+function filterFood(type) {
+
+    let restaurants =
+        document.querySelectorAll(
+            ".restaurant-card"
+        );
+
+
+    restaurants.forEach(function(restaurant) {
+
+        let restaurantType =
+            restaurant.getAttribute("data-type");
+
+
+        if (type === "all") {
+
+            restaurant.style.display =
+                "block";
+
+        }
+
+        else if (restaurantType === type) {
+
+            restaurant.style.display =
+                "block";
+
+        }
+
+        else {
+
+            restaurant.style.display =
+                "none";
+
+        }
+
+    });
+
+}
+
+
+/* =========================================
+   RESTAURANT DETAILS
+========================================= */
+
+function viewRestaurant(name) {
+
+    alert(
+        "🍽️ " +
+        name +
+        "\n\nRestaurant details will be added soon."
+    );
+
+}
+
+
+/* =========================================
+   HOTEL DETAILS
+========================================= */
+
+function viewHotel(name) {
+
+    alert(
+        "🏨 " +
+        name +
+        "\n\nHotel details will be added soon."
+    );
+
+}
+
+
+/* =========================================
+   PAGE LOAD
+========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        console.log(
+            "HelpMitr website loaded successfully!"
+        );
+
+    }
+);
+```
+
+### VS Code me run karna
+
+Terminal me:
+
+```bash
+mkdir HelpMitr
+cd HelpMitr
+
+touch index.html style.css script.js
+```
+
+Phir teen files me upar wala code paste karo.
+
+Final structure:
+
+```text
+HelpMitr
+│
+├── index.html
+├── style.css
+└── script.js
+```
+
+`index.html` ko browser/Live Server se open karo.
+
+**Important:** Abhi restaurants/hotels ka data **demo data** hai. Next level par hum ise actual **city-wise data** bana sakte hain:
+
+```text
+Gaya
+ ├── Emergency
+ ├── Restaurants
+ │    ├── Veg
+ │    └── Non-Veg
+ └── Hotels
+
+Delhi
+ ├── Emergency
+ ├── Restaurants
+ └── Hotels
+```
+
+Uske baad **search → city select → actual city-specific restaurants/hotels** automatically show karwa sakte hain.
